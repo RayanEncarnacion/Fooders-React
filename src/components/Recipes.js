@@ -19,8 +19,8 @@ const Recipes = () => {
           `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchValue}&key=eb36ee90-27f2-4bc7-8328-5922dec6e06b`
         );
 
+        updateRecipeDetails(null);
         if (!response.ok) {
-          updateSearchedRecipes([]);
           throw new Error("Something went wrong!");
         }
 
