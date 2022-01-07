@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { SearchContext } from "../store/search-store";
 
 const NavigationLogic = () => {
@@ -23,19 +23,22 @@ const NavigationLogic = () => {
     setSearchInputValue(e.target.value);
   };
 
-  const toggleSearchHandler = () => {
-    setSearchIsShown(!searchIsShown);
-  };
+  const toggleSearchHandler = useCallback(() => {
+    setSearchIsShown((prev) => !prev);
+  });
 
-  const onFormSubmitHandler = (e) => {
-    e.preventDefault();
+  const onFormSubmitHandler = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (searchInputValue === "") return;
+      if (searchInputValue === "") return;
 
-    getSearchValue(searchInputValue);
-    setSearchInputValue("");
-    toggleSearchHandler();
-  };
+      getSearchValue(searchInputValue);
+      setSearchInputValue("");
+      toggleSearchHandler();
+    },
+    [searchInputValue, getSearchValue, toggleSearchHandler]
+  );
 
   return {
     width,

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 const initialState = {
   searchedRecipes: [],
@@ -16,9 +16,9 @@ const SearchContextProvider = ({ children }) => {
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState(null);
 
-  const getSearchValue = (value) => {
+  const getSearchValue = useCallback((value) => {
     setSearchValue(value);
-  };
+  });
 
   const updateSearchedRecipes = (recipes) => {
     setSearchedRecipes(recipes);
