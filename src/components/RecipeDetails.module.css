@@ -1,0 +1,130 @@
+.recipe-details {
+  width: 90%;
+  margin-inline: auto;
+  margin-top: 3rem;
+  border-radius: 5px;
+  box-shadow: 0 0 1rem rgba(0 0 0 / 20%);
+  text-align: center;
+  max-width: 1000px;
+  position: relative;
+}
+
+.recipe-details .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #1d87a4;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.recipe-details .close svg {
+  margin-right: 0;
+  color: #f3f3f3;
+}
+
+.recipe-details svg {
+  vertical-align: middle;
+  margin-right: 0.2rem;
+  font-weight: bold;
+  color: #1d87a4;
+}
+
+.recipe-details img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  aspect-ratio: 1 / 0.5;
+  width: 100%;
+  object-fit: cover;
+}
+
+.recipe-title {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  background-color: #1d87a4;
+  color: #f3f3f3;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.recipe-details strong {
+  font-style: italic;
+}
+
+.cooking-details {
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ingredients-container {
+  background-color: hsl(0, 0%, 92%);
+  padding: 1rem 0;
+}
+
+.ingredients-list {
+  display: grid;
+  gap: 0.5rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+  padding: 1rem;
+  list-style-type: none;
+}
+
+.how-to-cook {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.how-to-cook a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #1d87a4;
+  color: #f3f3f3;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  width: fit-content;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.how-to-cook a svg {
+  color: #f3f3f3;
+}
+
+.how-to-cook p {
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .recipe-details img {
+    aspect-ratio: 1 / 0.3;
+  }
+
+  .ingredients-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .ingredients-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Vujahday+Script&family=Yanone+Kaffeesatz&display=swap");
+
+:root {
+  overflow-x: hidden;
+}
+
+*,
+* + * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #f1f1f1;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+h1 {
+  font-family: "Vujahday Script", cursive;
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-size: 1.2rem;
+}
+
+.flex-ul {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.menu-ul {
+  flex-direction: column;
+  width: 100vw;
+}
+
+.nav-ul {
+  gap: 1.5rem;
+}
+
+.menu-ul a {
+  display: block;
+  width: 100%;
+  color: #f3f3f3;
+  background-color: #1d87a4;
+  text-decoration: none;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.horz-menu {
+  display: none !important;
+  position: initial !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  color: #f3f3f3 !important;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .horz-menu {
+    display: flex !important;
+  }
+}
