@@ -8,6 +8,11 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
 
+const buttonVariants = {
+  initial: { scale: 1 },
+  animate: { scale: 1.05 },
+};
+
 const RecipeDetails = () => {
   const { recipeDetails, resetRecipeDetails } = useContext(SearchContext);
 
@@ -17,8 +22,9 @@ const RecipeDetails = () => {
         <div className={classes["recipe-details"]}>
           <motion.button
             onClick={resetRecipeDetails}
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.05 }}
+            initial="initial"
+            whileHover="animate"
+            variants={buttonVariants}
             className={classes.close}
           >
             <AiOutlineClose />
@@ -44,7 +50,7 @@ const RecipeDetails = () => {
               {recipeDetails.ingredients.map((ing) => (
                 <li key={Math.random()}>
                   <p>
-                    <AiOutlineCheck />{" "}
+                    <AiOutlineCheck />
                     {`${ing.quantity} ${ing.unit} ${ing.description}`}
                   </p>
                 </li>
