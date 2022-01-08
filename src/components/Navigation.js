@@ -37,7 +37,7 @@ const Navigation = () => {
           </div>
         </div>
       </nav>
-      {width !== "Medium" && (
+      {!width && (
         <Search
           searchValue={searchInputValue}
           onChange={onSearchChangeHandler}
