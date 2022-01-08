@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Vujahday+Script&family=Yanone+Kaffeesatz&display=swap");
 
-:root {
-  overflow-x: hidden;
-}
-
 *,
 * + * {
   box-sizing: border-box;
@@ -16,6 +12,11 @@ body {
   overflow-x: hidden;
   background-color: #f1f1f1;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+#root {
+  overflow-x: hidden;
+  position: relative;
 }
 
 h1 {
