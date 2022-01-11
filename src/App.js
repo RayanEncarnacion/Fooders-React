@@ -17,9 +17,9 @@ function App() {
             <>
               <Navigation />
               {}
-              {requestError && <h3 className="no-recipes">{requestError}</h3>}
+              {requestError && <h3 className="accent-text">{requestError}</h3>}
               {searchedRecipes.length === 0 && (
-                <h3 className="no-recipes">
+                <h3 className="accent-text">
                   Search for your favorite dish or ingredient!
                 </h3>
               )}
