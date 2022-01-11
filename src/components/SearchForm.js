@@ -1,31 +1,40 @@
+import classes from "./SearchForm.module.css";
+
 const SearchForm = ({
   className,
   searchValue,
-  keywords,
-  keywordsClass,
+  smallScreens,
   onChange,
   onSubmit,
 }) => {
   return (
     <form className={className || null} onSubmit={onSubmit}>
+      {!smallScreens && (
+        <a
+          href="https://forkify-api.herokuapp.com/phrases.html"
+          target="_blank"
+          className={classes.keywords}
+        >
+          List of keywords
+        </a>
+      )}
       <input
         value={searchValue}
         onChange={onChange}
         type="search"
         placeholder="Enter Food or Ingredient name..."
       />
-      <button>Search</button>
-      {keywords && (
-        <button
-          onClick={() =>
-            window
-              .open("https://forkify-api.herokuapp.com/phrases.html", "_blank")
-              .focus()
-          }
-          className={keywordsClass}
+      <button type="submit" className={classes["search-button"]}>
+        Search
+      </button>
+      {smallScreens && (
+        <a
+          href="https://forkify-api.herokuapp.com/phrases.html"
+          target="_blank"
+          className={classes["keywords-sm"]}
         >
           List of keywords
-        </button>
+        </a>
       )}
     </form>
   );

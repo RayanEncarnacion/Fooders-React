@@ -45,6 +45,7 @@ const Navigation = () => {
               searchValue={searchInputValue}
               onChange={onSearchChangeHandler}
               onSubmit={onFormSubmitHandler}
+              smallScreens={false}
             />
           </div>
         </div>
@@ -55,7 +56,7 @@ const Navigation = () => {
           onChange={onSearchChangeHandler}
           onSubmit={onFormSubmitHandler}
           isOpen={searchIsShown}
-          keywords={true}
+          smallScreens={true}
         />
       )}
     </>
