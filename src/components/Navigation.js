@@ -24,12 +24,12 @@ const Navigation = () => {
 
   const resetAndGoToStart = () => {
     updateSearchedRecipes([]);
-    setRequestError(false);
+    setRequestError("");
     navigate("/");
   };
   return (
     <>
-      <nav>
+      <nav id="top">
         <div className={classes.navigation}>
           <h1 onClick={resetAndGoToStart}>
             <MdOutlineRestaurantMenu />
