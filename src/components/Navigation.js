@@ -55,6 +55,7 @@ const Navigation = () => {
           onChange={onSearchChangeHandler}
           onSubmit={onFormSubmitHandler}
           isOpen={searchIsShown}
+          keywords={true}
         />
       )}
     </>
