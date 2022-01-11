@@ -24,6 +24,9 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .navigation button {
