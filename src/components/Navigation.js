@@ -4,10 +4,13 @@ import Search from "./Search";
 import classes from "./Navigation.module.css";
 import SearchForm from "./SearchForm";
 import NavigationLogic from "./NavigationLogic";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { SearchContext } from "../store/search-store";
 
 const Navigation = () => {
   const {
-    width,
+    renderSearchForm,
     searchInputValue,
     searchIsShown,
     onSearchChangeHandler,
@@ -15,11 +18,19 @@ const Navigation = () => {
     toggleSearchHandler,
   } = NavigationLogic();
 
+  const { updateSearchedRecipes } = useContext(SearchContext);
+
+  const navigate = useNavigate();
+
+  const resetAndGoToStart = () => {
+    updateSearchedRecipes([]);
+    navigate("/");
+  };
   return (
     <>
       <nav>
         <div className={classes.navigation}>
-          <h1>
+          <h1 onClick={resetAndGoToStart}>
             <MdOutlineRestaurantMenu />
             Fooders
           </h1>
@@ -37,7 +48,7 @@ const Navigation = () => {
           </div>
         </div>
       </nav>
-      {!width && (
+      {renderSearchForm && (
         <Search
           searchValue={searchInputValue}
           onChange={onSearchChangeHandler}
