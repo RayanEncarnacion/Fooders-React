@@ -23,18 +23,10 @@
     gap: 2rem;
     padding: 3rem 1.5rem;
   }
-
-  .no-recipes {
-    grid-column: span 3;
-  }
 }
 @media (min-width: 1024px) {
   .recipes {
     grid-template-columns: repeat(4, 1fr);
     padding: 4rem 2rem;
-  }
-
-  .no-recipes {
-    grid-column: span 4;
   }
 }
