@@ -18,12 +18,13 @@ const Navigation = () => {
     toggleSearchHandler,
   } = NavigationLogic();
 
-  const { updateSearchedRecipes } = useContext(SearchContext);
+  const { updateSearchedRecipes, setRequestError } = useContext(SearchContext);
 
   const navigate = useNavigate();
 
   const resetAndGoToStart = () => {
     updateSearchedRecipes([]);
+    setRequestError(false);
     navigate("/");
   };
   return (
