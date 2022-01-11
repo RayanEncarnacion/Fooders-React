@@ -4,7 +4,7 @@ const initialState = {
   searchedRecipes: [],
   searchValue: "",
   recipeDetails: Object,
-  requestError: Boolean,
+  requestError: String,
   getSearchValue: (value) => {},
   updateSearchedRecipes: (recipes) => {},
   resetRecipeDetails: () => {},
