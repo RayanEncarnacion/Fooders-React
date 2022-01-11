@@ -1,6 +1,13 @@
-const SearchForm = ({ className, searchValue, onChange, onSubmit }) => {
+const SearchForm = ({
+  className,
+  searchValue,
+  keywords,
+  keywordsClass,
+  onChange,
+  onSubmit,
+}) => {
   return (
-    <form className={className || ""} onSubmit={onSubmit}>
+    <form className={className || null} onSubmit={onSubmit}>
       <input
         value={searchValue}
         onChange={onChange}
@@ -8,6 +15,18 @@ const SearchForm = ({ className, searchValue, onChange, onSubmit }) => {
         placeholder="Enter Food or Ingredient name..."
       />
       <button>Search</button>
+      {keywords && (
+        <button
+          onClick={() =>
+            window
+              .open("https://forkify-api.herokuapp.com/phrases.html", "_blank")
+              .focus()
+          }
+          className={keywordsClass}
+        >
+          List of keywords
+        </button>
+      )}
     </form>
   );
 };
