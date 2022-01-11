@@ -63,6 +63,14 @@ h4 {
   gap: 1rem;
 }
 
+.accent-text {
+  font-weight: bold;
+  text-align: center;
+  color: #1d87a4;
+  grid-column: span 2;
+  margin-top: 20vh;
+}
+
 @media (min-width: 768px) {
   .horz-menu {
     display: flex !important;
