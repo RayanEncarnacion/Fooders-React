@@ -37,12 +37,11 @@ const RecipeDetails = () => {
 
   const closeDetailsAndUpdateURL = () => {
     setRecipeDetails(null);
-    navigate(-1);
   };
 
   useEffect(() => {
     getData(id, setRecipeDetails, setRequestError);
-  }, []);
+  }, [id]);
 
   return (
     <>
