@@ -10,7 +10,7 @@ const searchVariants = {
   },
 };
 
-const Search = ({ isOpen, searchValue, onChange, onSubmit }) => {
+const Search = ({ isOpen, searchValue, keywords, onChange, onSubmit }) => {
   return (
     <motion.div
       className={classes.search}
@@ -19,6 +19,8 @@ const Search = ({ isOpen, searchValue, onChange, onSubmit }) => {
       variants={searchVariants}
     >
       <SearchForm
+        keywords={keywords}
+        keywordsClass={classes.keywords}
         searchValue={searchValue}
         onChange={onChange}
         onSubmit={onSubmit}
