@@ -14,16 +14,37 @@ const buttonVariants = {
 };
 
 const getData = async (id, setFunction, errorFunction) => {
-  const response = await fetch(
-    `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-  );
+  try {
+    const response = await fetch(
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
+    );
 
-  if (response.status === 409) {
-    errorFunction(true);
+    if (
+      response.status === 400 ||
+      response.status === 404 ||
+      response.status === "fail"
+    ) {
+      errorFunction(`No recipe details found with the provided ID: ${id}.`);
+      setFunction(null);
+      throw new Error(
+        `Status ${response.status} due to invalid recipe id: ${id}`
+      );
+      return;
+    }
+
+    if (response.status === 429) {
+      errorFunction(
+        "No more requests allowed!... Feel free to try again in an hour."
+      );
+      setFunction(null);
+      return;
+    }
+
+    const { data } = await response.json();
+    setFunction(data.recipe);
+  } catch (error) {
+    console.error(error);
   }
-
-  const { data } = await response.json();
-  setFunction(data.recipe);
 };
 
 // COMPONENT

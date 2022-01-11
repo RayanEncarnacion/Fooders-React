@@ -4,12 +4,15 @@ import { useContext, useEffect } from "react";
 import { SearchContext } from "../store/search-store";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
-const API_KEY = "b7dccd15-16d8-46cc-8423-6ab7bcfa41fb";
+const API_KEY = "edf1bef9-8bbf-4494-a57e-4a68736fb1fb";
+
+const navBar = document.querySelector("#top");
 
 const getData = async (
   URLParam = "",
   key,
   updateDetails,
+  requestError,
   setRequestError,
   updateSearchedRecipes
 ) => {
@@ -19,15 +22,18 @@ const getData = async (
       `https://forkify-api.herokuapp.com/api/v2/recipes?search=${URLParam}&key=${key}`
     );
     updateDetails(null);
-    if (response.status === 409) {
+    if (response.status === 429) {
       setRequestError(
-        "No more requests allowed!... Feel free to try again in an hour"
+        "No more requests allowed!... Feel free to try again in an hour."
       );
       throw new Error("Exceeded request per hour. Try again later!");
     }
+
     if (!response.ok) {
+      setRequestError("Something went wrong with your request!");
       throw new Error("Something went wrong with your request!");
     }
+
     const data = await response.json();
 
     if (data.results === 0) {
@@ -35,6 +41,8 @@ const getData = async (
       updateSearchedRecipes([]);
       return;
     }
+
+    setRequestError("");
     updateSearchedRecipes(data.data.recipes);
   } catch (error) {
     console.error(error);
@@ -56,6 +64,7 @@ const Recipes = () => {
 
   const addIdToURL = (id) => {
     navigate(`/${food}/${id}`);
+    navBar.scrollIntoView();
   };
 
   useEffect(() => {
@@ -63,6 +72,7 @@ const Recipes = () => {
       food,
       API_KEY,
       updateRecipeDetails,
+      requestError,
       setRequestError,
       updateSearchedRecipes
     );
