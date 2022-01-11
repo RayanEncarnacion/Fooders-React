@@ -11,14 +11,6 @@
   margin-inline: auto;
 }
 
-.no-recipes {
-  font-weight: bold;
-  text-align: center;
-  color: #1d87a4;
-  grid-column: span 2;
-  margin-top: 3rem;
-}
-
 @media (min-width: 425px) {
   .recipes {
     grid-template-columns: repeat(2, minmax(120px, 250px));
