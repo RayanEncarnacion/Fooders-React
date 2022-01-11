@@ -20,6 +20,16 @@ nav {
   gap: 0.5rem;
 }
 
+.navigation div button:first-child {
+  color: #f2f2f2;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0.5rem;
+}
+
 .navigation h1 {
   display: flex;
   align-items: center;
@@ -27,23 +37,6 @@ nav {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-}
-
-.navigation button {
-  display: grid;
-  place-content: center;
-  font-size: 1.7rem;
-  text-align: center;
-  vertical-align: middle;
-  outline: none;
-  background: transparent;
-  border: none;
-  color: #f2f2f2;
-  cursor: pointer;
-}
-
-.navigation button:first-child {
-  font-size: 1.2rem;
 }
 
 .navigation .lg-search {
@@ -65,21 +58,6 @@ nav {
   border-right: none;
   border-radius: 3px;
   margin-right: 6rem;
-}
-
-.navigation .lg-search button {
-  position: absolute;
-  border: none;
-  outline: none;
-  background: #c65871;
-  color: #f3f3f3;
-  font-weight: bold;
-  padding: 0.33rem 1rem;
-  font-size: 1rem;
-  border-radius: 3px;
-  right: 0;
-  top: 0;
-  z-index: 100;
 }
 
 @media (min-width: 768px) {
