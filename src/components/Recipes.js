@@ -6,13 +6,10 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 const API_KEY = "edf1bef9-8bbf-4494-a57e-4a68736fb1fb";
 
-const navBar = document.querySelector("#top");
-
 const getData = async (
   URLParam = "",
   key,
   updateDetails,
-  requestError,
   setRequestError,
   updateSearchedRecipes
 ) => {
@@ -54,7 +51,6 @@ const Recipes = () => {
     searchedRecipes,
     updateSearchedRecipes,
     updateRecipeDetails,
-    requestError,
     setRequestError,
   } = useContext(SearchContext);
 
@@ -64,7 +60,7 @@ const Recipes = () => {
 
   const addIdToURL = (id) => {
     navigate(`/${food}/${id}`);
-    navBar.scrollIntoView();
+    document.getElementById("top").scrollIntoView();
   };
 
   useEffect(() => {
@@ -72,7 +68,6 @@ const Recipes = () => {
       food,
       API_KEY,
       updateRecipeDetails,
-      requestError,
       setRequestError,
       updateSearchedRecipes
     );
