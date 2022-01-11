@@ -16,7 +16,6 @@ function App() {
           element={
             <>
               <Navigation />
-              {}
               {requestError && searchedRecipes.length === 0 && (
                 <h3 className="accent-text">{requestError}</h3>
               )}
