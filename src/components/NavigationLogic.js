@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NavigationLogic = () => {
@@ -7,8 +7,6 @@ const NavigationLogic = () => {
   const [renderSearchForm, setRenderSearchForm] = useState(true);
 
   const navigate = useNavigate();
-
-  useEffect(() => console.log("Change form visibility!"), [renderSearchForm]);
 
   window.addEventListener("load", () => {
     window.innerWidth >= 768
