@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { SearchContext } from "../store/search-store";
+import { useEffect, useState, useContext } from "react";
 import classes from "./RecipeDetails.module.css";
 import { MdOutlineTimer } from "react-icons/md";
 import { BsPeople } from "react-icons/bs";
@@ -7,21 +6,50 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { SearchContext } from "../store/search-store";
 const buttonVariants = {
   initial: { scale: 1 },
   animate: { scale: 1.05 },
 };
 
+const getData = async (id, setFunction, errorFunction) => {
+  const response = await fetch(
+    `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
+  );
+
+  if (response.status === 409) {
+    errorFunction(true);
+  }
+
+  const { data } = await response.json();
+  setFunction(data.recipe);
+};
+
+// COMPONENT
 const RecipeDetails = () => {
-  const { recipeDetails, resetRecipeDetails } = useContext(SearchContext);
+  const [recipeDetails, setRecipeDetails] = useState(null);
+
+  const { setRequestError } = useContext(SearchContext);
+
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const closeDetailsAndUpdateURL = () => {
+    setRecipeDetails(null);
+    navigate(-1);
+  };
+
+  useEffect(() => {
+    getData(id, setRecipeDetails, setRequestError);
+  }, []);
 
   return (
     <>
-      {recipeDetails && (
+      {recipeDetails ? (
         <div className={classes["recipe-details"]}>
           <motion.button
-            onClick={resetRecipeDetails}
+            onClick={closeDetailsAndUpdateURL}
             initial="initial"
             whileHover="animate"
             variants={buttonVariants}
@@ -69,6 +97,8 @@ const RecipeDetails = () => {
             </a>
           </div>
         </div>
+      ) : (
+        ""
       )}
     </>
   );
