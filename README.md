@@ -7,7 +7,7 @@
 <h2>How to use it?</h2>
 
 <p>1 - Search for your favorite dish or ingredient and get all the recipes that we offer. </p>
-<p>2 - In case you do not find any recipes with the name of the recipe or ingredient, click on the button with the text <strong>List of Keywords</strong> and it will open a new tab with the list of keywords.</p>
+<p>2 - In case you do not find any recipes with the name of the recipe or ingredient: Click on the button with the text <strong>List of Keywords</strong> and it will open a new tab with the list of keywords.</p>
 <p>3 - After you find the recipes, click on any recipe to display it's details.</p>
 <p>4 - You can go to the source page to see all the instructions by clicking on the button in the "How To Cook It" section with the text <strong>Details</strong>.</p>
 
