@@ -72,6 +72,8 @@ h4 {
   color: #1d87a4;
   grid-column: span 2;
   margin-top: 20vh;
+  width: 90%;
+  margin-inline: auto;
 }
 
 @media (min-width: 768px) {
