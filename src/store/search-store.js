@@ -4,9 +4,11 @@ const initialState = {
   searchedRecipes: [],
   searchValue: "",
   recipeDetails: Object,
+  requestError: Boolean,
   getSearchValue: (value) => {},
   updateSearchedRecipes: (recipes) => {},
   resetRecipeDetails: () => {},
+  setRequestError: () => {},
 };
 
 export const SearchContext = createContext(initialState);
@@ -15,6 +17,7 @@ const SearchContextProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState(null);
+  const [requestError, setRequestError] = useState("");
 
   const getSearchValue = useCallback((value) => {
     setSearchValue(value);
@@ -41,6 +44,8 @@ const SearchContextProvider = ({ children }) => {
         updateSearchedRecipes,
         updateRecipeDetails,
         resetRecipeDetails,
+        requestError,
+        setRequestError,
       }}
     >
       {children}
