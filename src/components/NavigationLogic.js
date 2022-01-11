@@ -1,23 +1,20 @@
-import { useState, useEffect, useContext, useCallback } from "react";
-import { SearchContext } from "../store/search-store";
+import { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavigationLogic = () => {
   const [searchIsShown, setSearchIsShown] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [width, setWidth] = useState(null);
+  const [renderSearchForm, setRenderSearchForm] = useState(true);
+
+  const navigate = useNavigate();
+
+  useEffect(() => console.log("Change form visibility!"), [renderSearchForm]);
 
   window.addEventListener("load", () => {
-    window.innerWidth >= 768 ? setWidth("Medium") : "";
+    window.innerWidth >= 768
+      ? setRenderSearchForm(false)
+      : setRenderSearchForm(true);
   });
-
-  window.addEventListener("resize", () => {
-    if (width === "Medium" && window.innerWidth >= 768) return;
-    if (width === "Medium" && window.innerWidth <= 768) setWidth(null);
-    if (!width && window.innerWidth <= 768) return;
-    if (!width && window.innerWidth >= 768) setWidth("Medium");
-  });
-
-  const { getSearchValue } = useContext(SearchContext);
 
   const onSearchChangeHandler = (e) => {
     setSearchInputValue(e.target.value);
@@ -33,17 +30,17 @@ const NavigationLogic = () => {
 
       if (searchInputValue === "") return;
 
-      getSearchValue(searchInputValue);
+      navigate(`/${searchInputValue}`);
       setSearchInputValue("");
       toggleSearchHandler();
     },
-    [searchInputValue, getSearchValue, toggleSearchHandler]
+    [searchInputValue, toggleSearchHandler]
   );
 
   return {
-    width,
-    searchInputValue,
+    renderSearchForm,
     searchIsShown,
+    searchInputValue,
     onSearchChangeHandler,
     onFormSubmitHandler,
     toggleSearchHandler,
