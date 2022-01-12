@@ -4,7 +4,7 @@ import Search from "./Search";
 import classes from "./Navigation.module.css";
 import SearchForm from "./SearchForm";
 import NavigationLogic from "./NavigationLogic";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../store/search-store";
 
@@ -25,16 +25,15 @@ const Navigation = () => {
   const resetAndGoToStart = () => {
     updateSearchedRecipes([]);
     setRequestError("");
-    navigate("/");
   };
   return (
     <>
       <nav id="top">
         <div className={classes.navigation}>
-          <h1 onClick={resetAndGoToStart}>
+          <Link id="logo" to="/" onClick={resetAndGoToStart}>
             <MdOutlineRestaurantMenu />
             Fooders
-          </h1>
+          </Link>
           <div>
             <button className={classes["search-btn"]}>
               <FaSearch onClick={toggleSearchHandler} />
