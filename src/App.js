@@ -9,31 +9,29 @@ function App() {
   const { searchedRecipes, requestError } = useContext(SearchContext);
 
   return (
-    <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Navigation />
-              {requestError && searchedRecipes.length === 0 && (
-                <h3 className="accent-text">{requestError}</h3>
-              )}
-              {!requestError && searchedRecipes.length === 0 && (
-                <h3 className="accent-text">
-                  Search for your favorite dish or ingredient!
-                </h3>
-              )}
-              <Outlet />
-            </>
-          }
-        >
-          <Route path="/:food" element={<Recipes />}>
-            <Route path=":id" element={<RecipeDetails />} />
-          </Route>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Navigation />
+            {requestError && searchedRecipes.length === 0 && (
+              <h3 className="accent-text">{requestError}</h3>
+            )}
+            {!requestError && searchedRecipes.length === 0 && (
+              <h3 className="accent-text">
+                Search for your favorite dish or ingredient!
+              </h3>
+            )}
+            <Outlet />
+          </>
+        }
+      >
+        <Route path="/:food" element={<Recipes />}>
+          <Route path=":id" element={<RecipeDetails />} />
         </Route>
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 }
 
