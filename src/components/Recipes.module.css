@@ -1,5 +1,6 @@
 .recipes {
   display: grid;
+  position: relative;
   gap: 1em;
   width: 100%;
   padding: 2rem 1rem;
