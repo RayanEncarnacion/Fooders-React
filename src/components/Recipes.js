@@ -3,8 +3,49 @@ import RecipeItem from "./RecipeItem";
 import { useContext, useEffect } from "react";
 import { SearchContext } from "../store/search-store";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 const API_KEY = "edf1bef9-8bbf-4494-a57e-4a68736fb1fb";
+
+const fullContainer = {
+  hidden: { opacity: 0, y: 100 },
+  show: { opacity: 1, y: 0 },
+  exit: {
+    opacity: 0,
+    transition: { when: "afterChildren" },
+  },
+};
+
+const container = {
+  hidden: { opacity: 0, y: 100 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { when: "beforeChildren", staggerChildren: 0.2 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { when: "afterChildren", staggerChildren: 0.2 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 50, x: 0 },
+  show: {
+    opacity: 1,
+    y: [null, 0, 10, 0],
+    transition: { duration: 0.5, ease: "easeIn" },
+  },
+  wiggle: {
+    x: [null, 10, 0, 10, 0],
+    transition: { duration: 0.5, ease: "easeIn" },
+  },
+  exit: {
+    opacity: 0,
+    y: 50,
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
 
 const getData = async (
   URLParam = "",
@@ -14,6 +55,7 @@ const getData = async (
   updateSearchedRecipes
 ) => {
   if (!URLParam) return;
+  updateSearchedRecipes([]);
   try {
     const response = await fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes?search=${URLParam}&key=${key}`
@@ -74,21 +116,34 @@ const Recipes = () => {
   }, [food]);
 
   return (
-    <>
-      <Outlet />
-      <main className={classes.recipes}>
-        {searchedRecipes.length > 0 &&
-          searchedRecipes.map((recipe) => (
-            <RecipeItem
-              key={recipe.id}
-              title={recipe.title}
-              img={recipe.image_url}
-              publisher={recipe.publisher}
-              onClick={addIdToURL.bind(null, recipe.id)}
-            />
-          ))}
-      </main>
-    </>
+    <AnimatePresence>
+      <motion.div
+        variants={fullContainer}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        <Outlet />
+        {searchedRecipes.length > 0 && (
+          <motion.main
+            variants={container}
+            key="searchedRecipesContainer"
+            className={classes.recipes}
+          >
+            {searchedRecipes.map((recipe) => (
+              <RecipeItem
+                key={recipe.id}
+                title={recipe.title}
+                img={recipe.image_url}
+                publisher={recipe.publisher}
+                variants={item}
+                onClick={addIdToURL.bind(null, recipe.id)}
+              />
+            ))}
+          </motion.main>
+        )}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 export default Recipes;
