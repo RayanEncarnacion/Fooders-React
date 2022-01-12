@@ -5,12 +5,34 @@ import { BsPeople } from "react-icons/bs";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import { motion } from "framer-motion";
-import { useNavigate, useParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useParams } from "react-router-dom";
 import { SearchContext } from "../store/search-store";
+
 const buttonVariants = {
-  initial: { scale: 1 },
   animate: { scale: 1.05 },
+};
+
+const container = {
+  hidden: {
+    opacity: 0,
+    x: "120%",
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    height: "auto",
+    transition: {
+      duration: 1,
+      height: { duration: 0.7, delay: 0.3 },
+    },
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    x: ["0%", "15%", "-150%"],
+    transition: { height: { duration: 0.7, delay: 0.7 }, duration: 1 },
+  },
 };
 
 const getData = async (id, setFunction, errorFunction) => {
@@ -29,7 +51,6 @@ const getData = async (id, setFunction, errorFunction) => {
       throw new Error(
         `Status ${response.status} due to invalid recipe id: ${id}`
       );
-      return;
     }
 
     if (response.status === 429) {
@@ -52,8 +73,6 @@ const RecipeDetails = () => {
   const [recipeDetails, setRecipeDetails] = useState(null);
 
   const { setRequestError } = useContext(SearchContext);
-
-  const navigate = useNavigate();
   const { id } = useParams();
 
   const closeDetailsAndUpdateURL = () => {
@@ -65,12 +84,18 @@ const RecipeDetails = () => {
   }, [id]);
 
   return (
-    <>
+    <AnimatePresence>
       {recipeDetails ? (
-        <div className={classes["recipe-details"]}>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          key="recipeDetailsContainer"
+          className={classes["recipe-details"]}
+        >
           <motion.button
             onClick={closeDetailsAndUpdateURL}
-            initial="initial"
             whileHover="animate"
             variants={buttonVariants}
             className={classes.close}
@@ -116,11 +141,11 @@ const RecipeDetails = () => {
               Details <BsFillArrowRightCircleFill />
             </a>
           </div>
-        </div>
+        </motion.div>
       ) : (
         ""
       )}
-    </>
+    </AnimatePresence>
   );
 };
 export default RecipeDetails;
