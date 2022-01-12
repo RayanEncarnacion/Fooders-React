@@ -22,9 +22,16 @@ body {
   position: relative;
 }
 
-h1 {
+#logo {
   font-family: "Vujahday Script", cursive;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 !important;
 }
 
 h4 {
